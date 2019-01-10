@@ -26,14 +26,20 @@ class VenueService
 
     /**
      * @return array
+     * @throws \Exception
      */
     public function getList(): array
     {
-        $venuesJson = file_get_contents('../var/data/venues.json');
+        $list = [];
+        try {
+            $usersJson = file_get_contents('../var/data/venues.json');
 
-        $res = $this->serializer->deserialize($venuesJson, 'App\Entity\Venue[]', 'json');
-
-        return $res;
+            $list = $this->serializer->deserialize($usersJson, 'App\Entity\Venue[]', 'json');
+        } catch (\Exception $e) {
+            throw new \Exception('Error while reading venue file');
+            // @todo: handle the exception
+        }
+        return $list;
     }
 
     /**

@@ -11,8 +11,15 @@ use App\Service\WpPasswordHashService;
  */
 class UserService
 {
+    /**
+     * @var SerializerInterface $serializer
+     */
     private $serializer;
 
+    /**
+     * UserService constructor.
+     * @param SerializerInterface $serializer
+     */
     public function __construct(SerializerInterface $serializer)
     {
         $this->serializer = $serializer;
@@ -20,13 +27,19 @@ class UserService
 
     /**
      * @return array
+     * @throws \Exception
      */
     public function getList(): array
     {
-        $usersJson = file_get_contents('../var/data/users.json');
+        $list = [];
+        try {
+            $usersJson = file_get_contents('../var/data/users.json');
 
-        $users = $this->serializer->deserialize($usersJson, 'App\Entity\User[]', 'json');
-
-        return $users;
+            $list = $this->serializer->deserialize($usersJson, 'App\Entity\User[]', 'json');
+        } catch (\Exception $e) {
+            throw new \Exception('Error while reading user file');
+            // @todo: handle the exception
+        }
+        return $list;
     }
 }

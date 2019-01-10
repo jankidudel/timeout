@@ -7,9 +7,15 @@ use App\Service\VenueService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+/**
+ * Class DefaultController
+ */
 class DefaultController extends AbstractController
 {
     /**
+     * @param UserService $userService
+     * @param VenueService $venueService
+     * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/", name="default")
      */
     public function index(UserService $userService, VenueService $venueService)
