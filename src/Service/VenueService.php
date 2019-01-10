@@ -77,7 +77,9 @@ class VenueService
                     'reasons' => $venueCons
                 ];
             } else {
-                $placesToGo[] = $venue;
+                $placesToGo[] = [
+                    'venue' => $venue
+                ];
             }
         }
 
