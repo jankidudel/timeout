@@ -1,3 +1,9 @@
+Steps to run:
+
+* composer install
+* php bin/console server:start
+* open browser http://127.0.0.1:8000/
+
 @Todo:
 
 * Improve file data read - use parameter for the file folder path
