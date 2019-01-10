@@ -3,6 +3,7 @@ Steps to run:
 * composer install
 * php bin/console server:start
 * open browser http://127.0.0.1:8000/
+* To run the tests from console: ./bin/phpunit
 
 @Todo:
 
